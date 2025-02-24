@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-export default function Home() {
+export default function Home(): React.ReactElement {
   return (
     <div className="flex flex-col items-center justify-center min-h-[calc(100vh-10rem)]">
       <div className="max-w-3xl mx-auto text-center">

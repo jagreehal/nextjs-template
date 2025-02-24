@@ -5,7 +5,7 @@ import { useTheme } from 'next-themes';
 import { Moon, Sun } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-export function Navigation() {
+export function Navigation(): React.ReactElement {
   const { theme, setTheme } = useTheme();
 
   return (

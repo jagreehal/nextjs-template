@@ -17,9 +17,9 @@ interface PostListProps {
   posts: Post[];
 }
 
-export function PostList({ posts }: PostListProps) {
+export function PostList({ posts }: PostListProps): React.ReactElement {
   return (
-    <Card className="p-8">
+    <Card className="py-8 px-4">
       <CardHeader className="pt-0">
         <CardTitle>Recent Posts</CardTitle>
         <CardDescription>

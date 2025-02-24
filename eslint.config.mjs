@@ -10,7 +10,20 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
-  ...compat.extends('next/core-web-vitals', 'next/typescript'),
+  {
+    ignores: ['**/.next/**', '**/node_modules/**', 'src/components/ui/**'],
+  },
+  ...compat.extends(
+    'plugin:unicorn/recommended',
+    'next/core-web-vitals',
+    'next/typescript',
+  ),
+  {
+    rules: {
+      'unicorn/prevent-abbreviations': 'off',
+      'unicorn/no-null': 'off',
+    },
+  },
 ];
 
 export default eslintConfig;

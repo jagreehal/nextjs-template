@@ -37,9 +37,9 @@ const randomTodos = [
   'Read a book',
   'Call family',
   'Plan weekend',
-];
+] as const;
 
-function SubmitButton() {
+function SubmitButton(): React.ReactElement {
   const { pending } = useFormStatus();
   return (
     <Button type="submit" disabled={pending} size="lg" className="w-full">
@@ -48,12 +48,21 @@ function SubmitButton() {
   );
 }
 
-export default function ServerActionExample() {
+function getRandomTodo(): string {
+  return randomTodos[Math.floor(Math.random() * randomTodos.length)];
+}
+
+export default function ServerActionExample(): React.ReactElement {
   const formRef = useRef<HTMLFormElement>(null);
   const [todos, setTodos] = useState<Todo[]>([]);
 
-  async function action(formData: FormData) {
-    const todoText = formData.get('todo') as string;
+  async function action(formData: FormData): Promise<void> {
+    const todoText = formData.get('todo');
+
+    if (!todoText || typeof todoText !== 'string') {
+      toast.error('Invalid todo text');
+      return;
+    }
 
     try {
       await addTodo(formData);
@@ -80,10 +89,6 @@ export default function ServerActionExample() {
       console.error(error);
       toast.error('Failed to add todo');
     }
-  }
-
-  function getRandomTodo() {
-    return randomTodos[Math.floor(Math.random() * randomTodos.length)];
   }
 
   return (

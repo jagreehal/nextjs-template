@@ -5,7 +5,29 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 export const revalidate = 3600; // Revalidate every hour
 
-async function getPageData() {
+interface Post {
+  id: number;
+  title: string;
+  body: string;
+  userId: number;
+}
+
+function isPost(value: unknown): value is Post {
+  return (
+    typeof value === 'object' &&
+    value !== null &&
+    'id' in value &&
+    'title' in value &&
+    'body' in value &&
+    'userId' in value &&
+    typeof (value as Record<string, unknown>).id === 'number' &&
+    typeof (value as Record<string, unknown>).title === 'string' &&
+    typeof (value as Record<string, unknown>).body === 'string' &&
+    typeof (value as Record<string, unknown>).userId === 'number'
+  );
+}
+
+async function getPageData(): Promise<Post[]> {
   const res = await fetch(
     'https://jsonplaceholder.typicode.com/posts?_limit=5',
     {
@@ -17,10 +39,23 @@ async function getPageData() {
     throw new Error('Failed to fetch posts');
   }
 
-  return res.json();
+  const data: unknown = await res.json();
+
+  if (!Array.isArray(data)) {
+    throw new TypeError('Expected array of posts');
+  }
+
+  const posts = data.map((item) => {
+    if (!isPost(item)) {
+      throw new Error('Invalid post data');
+    }
+    return item;
+  });
+
+  return posts;
 }
 
-export default async function DataFetchingExample() {
+export default async function DataFetchingExample(): Promise<React.ReactElement> {
   const posts = await getPageData();
 
   return (
@@ -65,7 +100,7 @@ export default async function DataFetchingExample() {
   );
 }
 
-function UserProfileSkeleton() {
+function UserProfileSkeleton(): React.ReactElement {
   return (
     <div className="rounded-lg border bg-card text-card-foreground">
       <div className="p-6 space-y-4">

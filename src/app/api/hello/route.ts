@@ -1,6 +1,15 @@
 import { NextResponse } from 'next/server';
 
-export async function GET() {
+interface HelloResponse {
+  message: string;
+  timestamp: string;
+}
+
+interface PostResponse extends HelloResponse {
+  data: unknown;
+}
+
+export async function GET(): Promise<NextResponse<HelloResponse>> {
   return NextResponse.json(
     {
       message: 'Hello from the API!',
@@ -15,8 +24,11 @@ export async function GET() {
   );
 }
 
-export async function POST(request: Request) {
-  const body = await request.json();
+export async function POST(
+  request: Request,
+): Promise<NextResponse<PostResponse>> {
+  // Parse request body as unknown since we don't know its shape
+  const body: unknown = await request.json();
 
   return NextResponse.json(
     {

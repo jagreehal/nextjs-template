@@ -1,6 +1,11 @@
 'use server';
 
-export async function addTodo(formData: FormData) {
+interface AddTodoResponse {
+  success: boolean;
+  todo: string;
+}
+
+export async function addTodo(formData: FormData): Promise<AddTodoResponse> {
   // Simulate a delay to show loading state
   await new Promise((resolve) => setTimeout(resolve, 1000));
 
