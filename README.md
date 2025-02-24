@@ -1,6 +1,12 @@
-# Modern Next.js Template
+# Next.js Template
 
-A modern, feature-rich Next.js 15+ template with App Router, TypeScript, and Tailwind CSS. This template includes examples of common features and best practices for building modern web applications.
+This is my Next.js 15+ template with App Router, TypeScript, and Tailwind CSS. This template includes example building blocks for the following:
+
+- Server Actions with form handling
+- API Routes with TypeScript
+- Static & Dynamic data fetching
+- Suspense boundaries
+- Error handling patterns
 
 Created by [Jag Reehal](https://github.com/jreehal).
 
@@ -22,18 +28,11 @@ Created by [Jag Reehal](https://github.com/jreehal).
   - Responsive design
   - Clean and modern UI components
 
-- 📚 **Example Features**
-  - Server Actions with form handling
-  - API Routes with TypeScript
-  - Static & Dynamic data fetching
-  - Suspense boundaries
-  - Error handling patterns
-
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js 18.17 or later
+- Node.js 22 or later
 - npm, yarn, pnpm, or bun
 
 ### Installation
@@ -41,7 +40,7 @@ Created by [Jag Reehal](https://github.com/jreehal).
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/nextjs-template.git
+   git clone https://github.com/jreehal/nextjs-template.git
    cd nextjs-template
    ```
 
@@ -69,7 +68,7 @@ Created by [Jag Reehal](https://github.com/jreehal).
    bun dev
    ```
 
-4. Open [http://localhost:3000](http://localhost:3000) with your browser.
+4. Open [http://localhost:3001](http://localhost:3001) with your browser.
 
 ## Project Structure
 
@@ -134,15 +133,6 @@ Add new components in `src/components/`:
 
 - Follow the existing pattern
 - Use TypeScript for type safety
-- Include proper JSDoc comments
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Open a pull request
 
 ## License
 
