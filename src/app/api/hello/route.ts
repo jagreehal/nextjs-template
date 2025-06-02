@@ -10,6 +10,7 @@ interface PostResponse extends HelloResponse {
 }
 
 export async function GET(): Promise<NextResponse<HelloResponse>> {
+  await new Promise((resolve) => setTimeout(resolve, 1000));
   return NextResponse.json(
     {
       message: 'Hello from the API!',
